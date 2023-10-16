@@ -1,0 +1,38 @@
+body {
+    background-color: white;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+header {
+    border: 10px solid blue;
+    text-align: center;
+    font-size: 30px;
+    background-color: blue;
+    font-weight:bold;
+    color: white;
+    margin-top: 8px;
+}
+
+.container {
+    border: 1px solid black;
+}
+
+.card-body {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.weather {
+    border: 1px solid green;
+    height: 159px;
+    width: 693px;
+}
+
+.col {
+    border: 1px solid salmon;
+}
+
+.card-body {
+    float:left
+}
+
