@@ -1,38 +1,12 @@
 body {
-    background-color: white;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin: 4px;
 }
 
 header {
-    border: 10px solid blue;
+    background-color: rgba(0, 0, 255, 0.931);
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 30px;
-    background-color: blue;
-    font-weight:bold;
-    color: white;
-    margin-top: 8px;
+    font-size: 3rem
 }
 
-.container {
-    border: 1px solid black;
-}
-
-.card-body {
-    border: 1px solid rgb(0, 0, 0);
-}
-
-.weather {
-    border: 1px solid green;
-    height: 159px;
-    width: 693px;
-}
-
-.col {
-    border: 1px solid salmon;
-}
-
-.card-body {
-    float:left
-}
 
