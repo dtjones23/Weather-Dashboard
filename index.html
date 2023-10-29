@@ -15,8 +15,8 @@
     <section class="columns">
         <div class="column is-4">
             <h2 class="title is-2 has-text-info">Search for a City:</h2>
-            <input class="input" type="text" placeholder="Search..">
-            <button class="button">Search</button>
+            <input class="input" type="text" id="searchBox">
+            <button class="button" id="searchBtn">Search</button>
         </div>
 
         <div class="column is-1"></div>
@@ -26,7 +26,7 @@
             <ul class="content">
                 <li class="temperature" id="temp">Temp:</li>
                 <li class="wind" id="wind">Windspeed: mph</li>
-                <li class="humidity" id="humid">Humitdity: %</li>
+                <li class="humidity" id="humid">Humidity: %</li>
             </ul>
         </div>
     </section>
@@ -38,28 +38,16 @@
 
         <div class="column is-1"></div>
 
-        <div class="column">
-            <h3 class="is-size-4 block">5-Day Forecast:</h3>
-            <div class="columns">
-                <div class="box has-background-grey">
-                    <p class="date">10/31/31</p>
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-home"></i>
-                        </span>
-                        <span>🏠</span>
-                    </span>
-                    <div class="temp" id="future-temp">Future Temp</div>
-                    <div class="wind" id="future-wind">Future Wind</div>
-                    <div class="humid" id="future-humid">Future Humid</div>
+        <div class="container">
+            <div class="column">
+                <h3 class="is-size-4 block">5-Day Forecast:</h3>
+                <div class="columns is-even" id="future-weather-container">
+                    <!-- weather boxes dynamically append here -->
                 </div>
-                
-                <div class="column"></div>
-
             </div>
-
+        </div>
     </section>
-<script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
