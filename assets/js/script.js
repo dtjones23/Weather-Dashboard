@@ -31,9 +31,14 @@ async function futureWeather(city) {
         // clears existing innerHTML
         futureWeatherContainer.innerHTML = '';
 
-        // loops through 5 days
-        for (let index = 0; index < 5; index++) {
+        const currentDay = dayjs();
+
+        // loops through 5 days, 1 represents the next day
+        for (let index = 1; index < 6; index++) {
             const forecastData = data.list[4 * index];
+
+            // calculate date based on index
+            const forecastDate = currentDay.add(index, 'day').format('MM/DD/YYYY')
 
             // creates box for each day
             const weatherBox = document.createElement('div')
@@ -44,7 +49,7 @@ async function futureWeather(city) {
 
             // sets the innerHTML for dynamically generated weather boxes
             weatherBox.innerHTML = `
-                <p class="date">${dayjs(forecastData.dt * 1000).format('MM/DD/YYYY')}</p>
+                <p class="date">${forecastDate}</p>
                 <div class="temp" id="future-temp">${Math.round(forecastData.main.temp)} °F</div>
                 <div class="wind" id="future-wind">${forecastData.wind.speed} kph</div>
                 <div class="humid" id="future-humid">${forecastData.main.humidity} %</div>
