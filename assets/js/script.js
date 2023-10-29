@@ -50,10 +50,11 @@ async function futureWeather(city) {
             // sets the innerHTML for dynamically generated weather boxes
             weatherBox.innerHTML = `
                 <p class="date">${forecastDate}</p>
-                <div class="temp" id="future-temp">${Math.round(forecastData.main.temp)} °F</div>
-                <div class="wind" id="future-wind">${forecastData.wind.speed} kph</div>
-                <div class="humid" id="future-humid">${forecastData.main.humidity} %</div>
+                <div class="temp" id="future-temp"> Temp: ${Math.round(forecastData.main.temp)} °F</div>
+                <div class="wind" id="future-wind"> Wind: ${forecastData.wind.speed} mph</div>
+                <div class="humid" id="future-humid"> Humidity: ${forecastData.main.humidity} %</div>
             `;
+            console.log(weatherBox);
             // appends the weather box to future weather container
             futureWeatherContainer.appendChild(weatherBox)
         }
@@ -61,17 +62,61 @@ async function futureWeather(city) {
         console.error("Error fetching future weather data", error);
     }
 }
+// gets the search history from local storage
+function getSearchHistory() {
+    const history = localStorage.getItem('searchHistory')
+    return history ? JSON.parse(history): []
+}
+
+// updates the search history in local storage
+function updateSearchHistory(city) {
+    const history = getSearchHistory();
+    history.push(city);
+    localStorage.setItem('searchHistory', JSON.stringify(history))
+    
+}
+
+// displays the searched cities to the HTML
+function displaySearchHistory() {
+    const searchHistory = getSearchHistory()
+    const searchHistoryList = document.getElementById('searchHistory')
+
+    // clears exsisting content
+    searchHistoryList.innerHTML='';
+
+    // iterates over search to then display on page per search
+    for(const city of searchHistory) {
+        const listItem = document.createElement('li')
+        listItem.textContent = city;
+        searchHistoryList.appendChild(listItem)
+    }
+}
 
 const searchBox = document.getElementById('searchBox')
 const searchBtn = document.getElementById('searchBtn')
 
 searchBtn.addEventListener("click", () => {
-    getWeather(searchBox.value);
-    // gives city name in the input 
+    const city = searchBox.value
+    
+    updateSearchHistory(city)
+    // updates the search history
 
-    futureWeather(searchBox.value);
+    displaySearchHistory()
+    // displays search history on screen
+
+    getWeather(city)
+    // gives city name in the input 
+    
+    futureWeather(city)    
     // gives future weather conditions for 5 day forecast in the input
+
+    
+
+    
 })
+// initializes search history when page loads
+displaySearchHistory()
+
 
 
 
