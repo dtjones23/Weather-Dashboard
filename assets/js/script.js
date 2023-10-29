@@ -54,7 +54,6 @@ async function futureWeather(city) {
                 <div class="wind" id="future-wind"> Wind: ${forecastData.wind.speed} mph</div>
                 <div class="humid" id="future-humid"> Humidity: ${forecastData.main.humidity} %</div>
             `;
-            console.log(weatherBox);
             // appends the weather box to future weather container
             futureWeatherContainer.appendChild(weatherBox)
         }
@@ -62,10 +61,11 @@ async function futureWeather(city) {
         console.error("Error fetching future weather data", error);
     }
 }
+
 // gets the search history from local storage
 function getSearchHistory() {
     const history = localStorage.getItem('searchHistory')
-    return history ? JSON.parse(history): []
+    return history ? JSON.parse(history) : []
 }
 
 // updates the search history in local storage
@@ -73,7 +73,7 @@ function updateSearchHistory(city) {
     const history = getSearchHistory();
     history.push(city);
     localStorage.setItem('searchHistory', JSON.stringify(history))
-    
+
 }
 
 // displays the searched cities to the HTML
@@ -82,22 +82,53 @@ function displaySearchHistory() {
     const searchHistoryList = document.getElementById('searchHistory')
 
     // clears exsisting content
-    searchHistoryList.innerHTML='';
+    searchHistoryList.innerHTML = '';
 
     // iterates over search to then display on page per search
-    for(const city of searchHistory) {
+    for (const city of searchHistory) {
         const listItem = document.createElement('li')
         listItem.textContent = city;
+        listItem.classList.add('search-history-item')
         searchHistoryList.appendChild(listItem)
+
+        listItem.addEventListener('click', () => {
+            handleSearchHistoryClick(city)
+        });
     }
 }
 
+// creates container for city weather results
+function createCityWeatherResults(city) {
+    const cityContainer = document.createElement('div')
+    cityContainer.classList.add('column', 'is-4')
+
+    const cityTitle = document.createElement('h2')
+    cityTitle.textContent = city
+
+    const cityWeather = document.createElement('div')
+    cityWeather.classList.add('box')
+
+    cityContainer.appendChild(cityTitle)
+    cityContainer.appendChild(cityWeather)
+
+    // appends the container to the weather results
+    const weatherResults = document.getElementById('weather-results')
+    weatherResults.appendChild(cityContainer)
+    
+    return cityWeather;
+}
+
+// to handle click for the search history items
+function handleSearchHistoryClick(city) {
+    getWeather(city, createCityWeatherResults)
+    futureWeather(city, createCityWeatherResults)
+}
 const searchBox = document.getElementById('searchBox')
 const searchBtn = document.getElementById('searchBtn')
 
 searchBtn.addEventListener("click", () => {
     const city = searchBox.value
-    
+
     updateSearchHistory(city)
     // updates the search history
 
@@ -106,13 +137,10 @@ searchBtn.addEventListener("click", () => {
 
     getWeather(city)
     // gives city name in the input 
-    
-    futureWeather(city)    
+
+    futureWeather(city)
     // gives future weather conditions for 5 day forecast in the input
 
-    
-
-    
 })
 // initializes search history when page loads
 displaySearchHistory()
