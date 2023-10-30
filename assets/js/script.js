@@ -114,7 +114,7 @@ function createCityWeatherResults(city) {
     // appends the container to the weather results
     const weatherResults = document.getElementById('weather-results')
     weatherResults.appendChild(cityContainer)
-    
+
     return cityWeather;
 }
 
