@@ -13,9 +13,7 @@ Overall, the tasks for this assignment helped my understanding for how to implem
 
 # Screenshot
 
-    ```md
-    ![alt text](assets/images/image.png)
-    ```
+  ![image](assets/images/image.png)
 
 
 # Credits
