@@ -12,7 +12,11 @@ Overall, the tasks for this assignment helped my understanding for how to implem
 - the smaller boxes will contain the forecast for the next 5 days
 
 # Screenshot
-![Alt text](image.png)
+
+    ```md
+    ![alt text](assets/images/image.png)
+    ```
+
 
 # Credits
 https://www.youtube.com/watch?v=MIYQR-Ybrn4
